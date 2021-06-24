@@ -1,0 +1,2 @@
+rootProject.name = "20210624_Insta"
+include ':app'
