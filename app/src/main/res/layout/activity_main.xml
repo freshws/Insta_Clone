@@ -8,6 +8,8 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <!-- android:id="@+id/toolbar"가 activity_main 바로 아래 있는 것이 아니기 때문에 -->
+    <!-- 데이터바인딩을 이용해 toolbar에 접근하기 위해서는 android:id="@+id/app_bar_main" 필요 -->
     <include
         android:id="@+id/app_bar_main"
         layout="@layout/app_bar_main"
