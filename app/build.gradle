@@ -1,5 +1,10 @@
 plugins {
     id 'com.android.application'
+
+    //힐트 적용을 위해 삽입
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -17,6 +22,9 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        //멀티덱스 적용을 위해 삽입
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,7 +62,16 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // 잭슨
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.1'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+
+    // 멀티덱스
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+
+    // 힐트
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
 }

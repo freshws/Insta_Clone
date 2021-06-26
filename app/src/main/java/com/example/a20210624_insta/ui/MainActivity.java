@@ -22,6 +22,10 @@ import com.example.a20210624_insta.databinding.ActivityMainBinding;
 
 import java.util.Random;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+//힐트 적용을 위해 삽입
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -39,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         //MainViewModel vm = new MainViewModel();
 
         //ViewModelProvider를 사용해 ViewModel 구성
+        //힐트 생성으로 MainViewModel 객체 생성시 생성자의 매개변수로 application을 넘겨줘야하지만 힐트가 알아서 생성 후 넘겨줌
+        //힐트 사용으로 MemberService 매개변수를 개체로 만들어 자동으로 넘겨주지만 내부 구성은 해줘야함
         MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
         binding.setMainVm(vm);
 
