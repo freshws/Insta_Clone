@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,6 +19,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a20210624_insta.databinding.ActivityMainBinding;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //ViewModel을 적용하기 위해서 사용
-        MainViewModel vm = new MainViewModel();
-        binding.setMainVm(vm);
+        //MainViewModel vm = new MainViewModel();
 
-        //아바타 이미지 세팅
-        vm.lvAvartarImgUrl.setValue("https://i.pravatar.cc/600?img=4");
+        //ViewModelProvider를 사용해 ViewModel 구성
+        MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
+        binding.setMainVm(vm);
 
         NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header_main, binding.navView, false);
         navHeaderMainBinding.setLifecycleOwner(this);
