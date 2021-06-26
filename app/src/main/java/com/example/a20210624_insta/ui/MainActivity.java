@@ -1,12 +1,15 @@
-package com.example.a20210624_insta;
+package com.example.a20210624_insta.ui;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.a20210624_insta.R;
+import com.example.a20210624_insta.databinding.NavHeaderMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,6 +31,18 @@ public class MainActivity extends AppCompatActivity {
         //액티비티 생성시 강의와 다르게 데이터바인딩이 적용되어 있음
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //ViewModel을 적용하기 위해서 사용
+        MainViewModel vm = new MainViewModel();
+        binding.setMainVm(vm);
+
+        //아바타 이미지 세팅
+        vm.lvAvartarImgUrl.setValue("https://i.pravatar.cc/600?img=4");
+
+        NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header_main, binding.navView, false);
+        navHeaderMainBinding.setLifecycleOwner(this);
+        navHeaderMainBinding.setMainVm(vm);
+        binding.navView.addHeaderView(navHeaderMainBinding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
