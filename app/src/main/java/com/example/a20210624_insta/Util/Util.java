@@ -117,6 +117,7 @@ public class Util {
         loadImageOn(imgUrl, imageView, 0);
     }
 
+    //borderRadius는 이미지의 코너를 둥글게 만들어주는 매개변수
     public static void loadImageOn(String imgUrl, ImageView imageView, int borderRadius) {
         if (borderRadius > 0) {
             Glide.with(application)
