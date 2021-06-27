@@ -10,12 +10,14 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 
 public class Util {
 
@@ -108,6 +110,7 @@ public class Util {
         }
     }
 
+
     public static float dipToPixels(float borderRadius) {
         DisplayMetrics metrics = application.getResources().getDisplayMetrics();
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, borderRadius, metrics);
@@ -120,6 +123,8 @@ public class Util {
     //borderRadius는 이미지의 코너를 둥글게 만들어주는 매개변수
     public static void loadImageOn(String imgUrl, ImageView imageView, int borderRadius) {
         if (borderRadius > 0) {
+            //MyGlideApp 클래스는 글라이드 설정(세팅)을 할 수 있게 해주는 클래스
+            //강의에서는 "Glide"를 "GlideApp"으로 변경 해줬지만 내 프로젝트에서는 "GlideApp"이란 명령어는 없음
             Glide.with(application)
                     .load(imgUrl)
                     .transform(new CenterCrop(), new RoundedCorners((int) dipToPixels(borderRadius)))
@@ -129,7 +134,6 @@ public class Util {
                     .load(imgUrl)
                     .into(imageView);
         }
-
     }
 
     public static void setTimeout(Runnable r, int delay) {
